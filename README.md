@@ -5,9 +5,9 @@
 
 ## Installation de l'environnement de travail
 
-  - Telecharger et installer [Ionic](http://ionicframework.com/)
+  - Telecharger et installer [Ionic](http://ionicframework.com/).
   - Telecharger et installer l'émulateur Android [Genymotion](https://www.genymotion.com/) (l'édition personnelle nécessite la création d'un compte).
-  - Création d'un projet, en ligne de commande : `ionic start "nomduprojet" blank`. Se placer dans le dossier créé.
+  - Cloner ce projet ou en créer un nouveau en ligne de commande : `ionic start "nomduprojet" blank`. Se placer dans le dossier créé.
   - Activer la plateforme Android : `ionic platform add android`.
 
 ## Building et Test du projet
