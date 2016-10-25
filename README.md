@@ -1,29 +1,49 @@
 # Iolearn
-
-  Apprentissage Ionic dans le cadre d'un développement pour un appareil Android.
+Le but de ce projet est d'accompagner l'apprentissage Ionic dans le cadre d'un développement pour un appareil Android.
   
 
 ## Installation de l'environnement de travail
 
-  - Telecharger et installer [Ionic](http://ionicframework.com/).
-  - Telecharger et installer l'émulateur Android [Genymotion](https://www.genymotion.com/) (l'édition personnelle nécessite la création d'un compte).
-  - Cloner ce projet ou en créer un nouveau en ligne de commande : `ionic start "nomduprojet" blank`. Se placer dans le dossier créé.
-  - Activer la plateforme Android : `ionic platform add android`.
+  - Installer node.js avec [NVM](https://github.com/creationix/nvm) (required). 
+  - Télécharger et installer [Ionic](http://ionicframework.com/) (required) `npm install -g cordova ionic`.     
+  - Installer l'environnement '**Android** et/ou **iOS** (reuiered).
+  - Telecharger et installer l'émulateur Android [Genymotion](www://https.genymotion.com/) (l'édition personnelle nécessite la création d'un compte).
 
-## Building et Test du projet
+## Usage
 
-  - A la racine du projet, build pour Android avec `ionic build android`. Cela va créer un fichier apk dans le dossier `ionic/[VotreProjet]/platforms/android/build/outputs/apk/` .
-  - Ouvrir un terminal virtuel android sur Genymotion.
-  - L'application Ionic peut être testée sur le terminal virtuel en tapant dans la CLI à la racine du projet : `ionic run android` (le terminal virtuel doit être ouvert) ou alors en glissant le fichier apk , créé lors du build, dans la fenêtre du terminal virtuel android ouvert.
+``` bash
+ git clone https://github.com/GonzalD/Iolearn.git
+ cd Iolearn
+ npm install    
+``` 
+Pour activer la plateforme Android : `ionic platform add android`. 
+
+### Android
+Suivre la marche à suivre suivante après avoir ouvert l'émulateur (dans notre exemple Genymotion), 
+``` bash
+ ionic build
+ ionic run android
+ 
+ # pour voir le log spécifique à javascript et Ionic
+ adb logcat CordovaLog:D *:S
+``` 
+> Notes
+- Le build Android va créer un fichier apk dans le dossier `ionic/[VotreProjet]/platforms/android/build/outputs/apk/`
+- L'application Ionic peut être testée sur le terminal virtuel en tapant à la racine du projet : `ionic run android` (le terminal virtuel doit être ouvert) ou alors en glissant le fichier apk , créé lors du build, dans la fenêtre du terminal virtuel android ouvert.
+
+## Test du projet
+> TODO, comment courrir les test unitaires de Ionic?
 
 
-
-
-
-
+# Bonnes pratiques
+ - Implémenter correctement les services angularjs (Controller, Service, Directive)
+ - Proposer une arborescence de fichiers qui soit pratique pour le développement et performante pour le déploiement
+ - utiliser les librairies externes avec bower
 
 
 
 ## Ressources
 
-http://ionicframework.com/docs/guide/
+1. http://ionicframework.com/docs/guide/
+2. https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md
+3. http://mcgivery.com/100-ionic-framework-resources/
