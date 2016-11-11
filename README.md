@@ -5,7 +5,7 @@ Le but de ce projet est d'accompagner l'apprentissage Ionic dans le cadre d'un d
 ## Installation de l'environnement de travail
 
   - Installer node.js avec [NVM](https://github.com/creationix/nvm) (required). 
-  - Télécharger et installer [Ionic](http://ionicframework.com/) (required) `npm install -g cordova ionic`.     
+  - Télécharger et installer [Ionic](http://ionicframework.com/) (required) `sudo npm install -g cordova ionic`.     
   - Installer l'environnement '**Android** et/ou **iOS** (reuiered).
   - Telecharger et installer l'émulateur Android [Genymotion](www://https.genymotion.com/) (l'édition personnelle nécessite la création d'un compte).
 
