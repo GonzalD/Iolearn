@@ -25,4 +25,12 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+
+.controller('NewsCtrl', Newsfunc);
+
+NewsCtrl.$inject = ['$scope','News'];
+
+function Newsfunc($scope, News){
+  $scope.news = News.newslist;
+}
