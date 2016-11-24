@@ -47,4 +47,10 @@ angular.module('starter.services', [])
       return null;
     }
   };
+})
+
+.factory('News', function(){
+  var newslist = [{'title' : 'Google a inventé les fly-gloves', 'text' : 'Elles permettront de s\'envoler en levant les bras'},
+                  {'title' : 'Attaque de chats zombies', 'text' : 'Ils contamination par les poils!'}];
+  return newslist;
 });
