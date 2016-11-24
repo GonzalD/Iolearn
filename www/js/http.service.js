@@ -1,16 +1,30 @@
 (function(){
+
   angular.module('http.services', [])
 
-  .factory('getProduitService', getProduits);
+  .factory('ProductsServ', getProducts);
 
-  function getProduits($http) {
-    return {
-      getProduits : function(){
-        var promise = $http.get('http://api.karibou.evaletolab.ch/v1/products/category/produits-laitiers').then(function(res){
-          return res.data.message;
-        });
-      }
+  getProducts.$inject = ['$http'];
+
+  function getProducts($http) {
+
+    var service = {
+      getJson: getJson,
+      getFile: getFile
     };
+
+    return service;
+
+      //récupère donnée API depuis le site
+      function getJson(url){
+        return $http.get(url);
+      }
+
+      //donnée API depuis fichier (produits_laits.json dans racine)
+      function getFile(){
+        return $http.get('produits_laits.json');
+      }
+
   }
 
 })();
