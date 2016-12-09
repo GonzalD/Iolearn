@@ -2,20 +2,22 @@
 
   angular.module('http.controller', ['http.services'])
 
-  .controller('ProduitsCtrl', milkProducts);
+  .controller('ProduitsCtrl', ProduitsCtrl);
 
-  milkProducts.$inject = ['$scope', '$http', 'ProductsServ'];
+  ProduitsCtrl.$inject = ['$scope', '$http', 'milkService'];
 
-  function milkProducts($scope, $http, ProductsServ){
+  function ProduitsCtrl($scope, $http, milkService){
 
     $scope.milkProductsList = [];
     $scope.show = false;
     $scope.page = 1;
     $scope.onSwipeRight = onSwipeRight;
     $scope.onSwipeLeft = onSwipeLeft;
-    var url = 'http://api.karibou.evaletolab.ch/v1/products/category/produits-laitiers';
+    milkService.configure(false);
 
-    getFromFile();
+    milkService.get().then(function(result){
+       $scope.milkProductsList=result;
+    });
 
     //swipe pour aller à page précédente
     function onSwipeRight(){
@@ -30,18 +32,6 @@
       }
     }
 
-    //produits laitiers de l'API récupérés depuis fichier produits_laits.json dans racine
-    function getFromFile(){
-      ProductsServ.getFile().success(function(data){
-      $scope.milkProductsList = data;
-      });
-    }
-    //produits laitiers récupéré par requête http sur l'API (site)
-    function getFromAPI(){
-      ProductsServ.getJson(url).success(function(data){
-      $scope.milkProductsList = data;
-      });
-    }
 
   }
 
