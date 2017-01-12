@@ -9,6 +9,7 @@ var sh = require('shelljs');
 var uglify = require('gulp-uglify');
 var htmlmin = require('gulp-htmlmin');
 var imagemin = require('gulp-imagemin');
+var clean = require('gulp-clean');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -94,8 +95,18 @@ gulp.task('image-min', function(){
 
 gulp.task('cpy-to-prod', function(){
   gulp.src([
-    './www/lib/*',
+    './www/lib/**/*',
     './www/*.json'
   ], {base: './www/'})
   .pipe(gulp.dest('./prod/'));
+});
+
+gulp.task('clean', function () {
+  gulp.src([
+    './prod/templates/*',
+    './prod/js/*',
+    './prod/img/*',
+    './prod/css',
+  ], {read: false})
+  .pipe(clean());
 });
