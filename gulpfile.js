@@ -6,12 +6,16 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var uglify = require('gulp-uglify');
+var htmlmin = require('gulp-htmlmin');
+var imagemin = require('gulp-imagemin');
+var clean = require('gulp-clean');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'cpy-to-prod','js-min', 'css-min', 'html-min', 'image-min']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -22,12 +26,16 @@ gulp.task('sass', function(done) {
       keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest('./prod/css/'))
     .on('end', done);
 });
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(['./www/*.js', './www/js/*.js'], ['js-min']);
+  gulp.watch(['./www/templates/*.html', './www/index.html'], ['html-min']);
+  gulp.watch('./www/css/', ['css-min']);
+  gulp.watch('./www/img/', ['image-min']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -48,4 +56,57 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('js-min', function() {
+  gulp.src([
+    ' ./www/*.js',
+    './www/js/*.js'
+  ], {base: './www/'})
+  .pipe(uglify())
+  .pipe(rename({ extname: '.min.js' }))
+  .pipe(gulp.dest('./prod/'));
+});
+
+gulp.task('css-min', function() {
+  gulp.src('./www/css/*.css')
+  .pipe(minifyCss({
+    keepSpecialComments: 0
+  }))
+  .pipe(rename({ extname: '.min.css' }))
+  .pipe(gulp.dest('./prod/css'));
+});
+
+gulp.task('html-min', function() {
+  gulp.src([
+    './www/templates/*.html',
+    './www/index.html'
+  ], {base: './www/'})
+  .pipe(htmlmin({collapseWhitespace: true}))
+  .pipe(rename({ extname: '.min.html' }))
+  .pipe(gulp.dest('./prod/'));
+});
+
+gulp.task('image-min', function(){
+  gulp.src('www/img/*')
+  .pipe(imagemin())
+  .pipe(gulp.dest('./prod/img/'));
+});
+
+gulp.task('cpy-to-prod', function(){
+  gulp.src([
+    './www/lib/**/*',
+    './www/*.json'
+  ], {base: './www/'})
+  .pipe(gulp.dest('./prod/'));
+});
+
+gulp.task('clean', function () {
+  gulp.src([
+    './prod/templates/*',
+    './prod/js/*',
+    './prod/img/*',
+    './prod/css',
+  ], {read: false})
+  .pipe(clean());
 });
