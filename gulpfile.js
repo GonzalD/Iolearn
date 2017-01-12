@@ -31,6 +31,10 @@ gulp.task('sass', function(done) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(['./www/*.js', './www/js/*.js'], ['js-min']);
+  gulp.watch(['./www/templates/*.html', './www/index.html'], ['html-min']);
+  gulp.watch('./www/css/', ['css-min']);
+  gulp.watch('./www/img/', ['image-min']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -55,9 +59,11 @@ gulp.task('git-check', function(done) {
 
 gulp.task('js-min', function() {
   gulp.src([
-    ' ./www/**/*.js'
+    ' ./www/*.js',
+    './www/js/*.js'
   ], {base: './www/'})
   .pipe(uglify())
+  .pipe(rename({ extname: '.min.js' }))
   .pipe(gulp.dest('./prod/'));
 });
 
@@ -76,6 +82,7 @@ gulp.task('html-min', function() {
     './www/index.html'
   ], {base: './www/'})
   .pipe(htmlmin({collapseWhitespace: true}))
+  .pipe(rename({ extname: '.min.html' }))
   .pipe(gulp.dest('./prod/'));
 });
 
