@@ -1,0 +1,52 @@
+<ion-view view-title="Listes de produits">
+  <ion-content>
+      <div class="bar bar-header bar-balanced main_div">
+        Produits laitiers
+      </div>
+      <div style="padding-top: 50px; padding-bottom: 10px; text-align: center;">
+        <span >
+          page {{page}}/{{milkProductsList.length / 10}}
+        </span>
+      </div>
+
+      <label class="item item-input item-floating-label">
+        <div class="input-label">Filtrer un produit</div>
+        <input type="text" placeholder="Filtrer un produit" ng-model="searchBar">
+      </label>
+
+      <div class="list" on-swipe-right="onSwipeRight()" on-swipe-left="onSwipeLeft()">
+        <div ng-click="show = !show" class="item " ng-repeat="product in milkProductsList | filter : searchBar">
+          <div class="prodpic">
+            <a href="{{product.photo.url}}" target="_blank"><img src="{{product.photo.url}}"></a>
+            <div >
+              <span ng-show="{{product.details.bio}}">Bio</span>
+              <div class="price">
+                <p>Fr {{product.pricing.price}}</p>
+                <p>{{product.pricing.part}}</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="item item-avatar-right">
+            <img src="{{product.vendor.photo.owner}}" >
+            <div class="title">
+              <h2>{{product.title}}</h2>
+              <div class="vendeur">
+                <p class="vendu">vendu par</p> <p>{{product.vendor.name}}</p>
+              </div>
+            </div>
+          </div>
+          <div ng-hide="show" class="icon ion-more more" >
+          </div>
+
+        <div ng-show="show" class="item">
+          <div class="desc">
+            {{product.details.description}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+</ion-content>
+</ion-view>

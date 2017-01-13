@@ -1,0 +1,60 @@
+/* Empty. Add your own CSS if you like */
+
+.vendeur{
+  text-align: right;
+}
+
+.vendu{
+  text-align: left;
+}
+
+.prodpic{
+  float: left;
+  margin-right: 2%;
+}
+
+.prodpic img{
+  width: 80px;
+  height: 80px;
+}
+
+.prodpic span{
+  color: green;
+}
+
+.price{
+  text-align: center;
+  padding: 0 10px 0;
+  background-color: #33cd5f;
+}
+
+.price p:first-child{
+  color: white;
+}
+
+.price p:nth-child(2){
+  color: white;
+}
+
+.title{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.title  h2{
+  white-space: normal;
+  text-align: left;
+}
+
+.more{
+  margin: 10px;
+  text-align: center;
+}
+
+.desc{
+  white-space: normal;
+  text-align: justify;
+  text-justify:
+}
