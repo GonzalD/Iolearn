@@ -4,9 +4,10 @@ Le but de ce projet est d'accompagner l'apprentissage Ionic dans le cadre d'un d
 
 ## Installation de l'environnement de travail
 
+  - Git doit être installé [Git](https://git-scm.com/book/fr/v1/D%C3%A9marrage-rapide-Installation-de-Git)
   - Installer node.js avec [NVM](https://github.com/creationix/nvm) (required). 
   - Télécharger et installer [Ionic](http://ionicframework.com/) (required) `sudo npm install -g cordova ionic`.     
-  - Installer l'environnement '**Android** et/ou **iOS** (reuiered).
+  - Installer l'environnement '**Android** et/ou **iOS** (required).
   - Telecharger et installer l'émulateur Android [Genymotion](www://https.genymotion.com/) (l'édition personnelle nécessite la création d'un compte).
 
 ## Usage
