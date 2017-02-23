@@ -23,22 +23,22 @@ gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
     .on('error', sass.logError)
-    .pipe(gulp.dest('./dev/css/'))
+    .pipe(gulp.dest('./app/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./dev/css/'))
+    .pipe(gulp.dest('./app/css/'))
     .on('end', done);
 });
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
-  gulp.watch('./dev/js/*', ['jslint']);
-  gulp.watch(['./dev/*.js', './dev/js/*.js'], ['js-min']);
-  gulp.watch(['./dev/templates/*.html', './dev/index.html'], ['html-min']);
-  gulp.watch('./dev/css/', ['css-min']);
-  gulp.watch('./dev/img/', ['image-min']);
+  gulp.watch('./app/js/*', ['jslint']);
+  gulp.watch(['./app/*.js', './app/js/*.js'], ['js-min']);
+  gulp.watch(['./app/templates/*.html', './app/index.html'], ['html-min']);
+  gulp.watch('./app/css/', ['css-min']);
+  gulp.watch('./app/img/', ['image-min']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -63,16 +63,16 @@ gulp.task('git-check', function(done) {
 
 gulp.task('js-min', function() {
   gulp.src([
-    ' ./dev/*.js',
-    './dev/js/*.js'
-  ], {base: './dev/'})
+    ' ./app/*.js',
+    './app/js/*.js'
+  ], {base: './app/'})
   .pipe(uglify())
   .pipe(rename({ extname: '.min.js' }))
   .pipe(gulp.dest('./www/'));
 });
 
 gulp.task('css-min', function() {
-  gulp.src('./dev/css/*.css')
+  gulp.src('./app/css/*.css')
   .pipe(minifyCss({
     keepSpecialComments: 0
   }))
@@ -81,7 +81,7 @@ gulp.task('css-min', function() {
 });
 
 gulp.task('html-min', function() {
-  gulp.src('./dev/templates/*.html')
+  gulp.src('./app/templates/*.html')
   .pipe(htmlmin({collapseWhitespace: true}))
   .pipe(rename({ extname: '.min.html' }))
   .pipe(gulp.dest('./www/templates/'))
@@ -90,16 +90,16 @@ gulp.task('html-min', function() {
 });
 
 gulp.task('image-min', function(){
-  gulp.src('dev/img/*')
+  gulp.src('app/img/*')
   .pipe(imagemin())
   .pipe(gulp.dest('./www/img/'));
 });
 
 gulp.task('cpy-to-prod', function(){
   gulp.src([
-    './dev/lib/**/*',
-    './dev/*.json'
-  ], {base: './dev/'})
+    './app/lib/**/*',
+    './app/*.json'
+  ], {base: './app/'})
   .pipe(gulp.dest('./www/'));
 });
 
@@ -112,7 +112,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('jslint', function(){
-  gulp.src('./dev/js/*')
+  gulp.src('./app/js/*')
   .pipe(jslint());
 });
 
