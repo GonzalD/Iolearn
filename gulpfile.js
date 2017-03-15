@@ -67,7 +67,7 @@ gulp.task('js-min', function() {
     './app/js/*.js'
   ], {base: './app/'})
   .pipe(uglify())
-  .pipe(rename({ extname: '.min.js' }))
+  //.pipe(rename({ extname: '.min.js' }))
   .pipe(gulp.dest('./www/'));
 });
 
@@ -76,16 +76,20 @@ gulp.task('css-min', function() {
   .pipe(minifyCss({
     keepSpecialComments: 0
   }))
-  .pipe(rename({ extname: '.min.css' }))
+  //.pipe(rename({ extname: '.min.css' }))
   .pipe(gulp.dest('./www/css'));
 });
 
 gulp.task('html-min', function() {
   gulp.src('./app/templates/*.html')
   .pipe(htmlmin({collapseWhitespace: true}))
-  .pipe(rename({ extname: '.min.html' }))
+  //.pipe(rename({ extname: '.min.html' }))
   .pipe(gulp.dest('./www/templates/'))
-  .pipe(templateCache())
+  //.pipe(templateCache())
+  //.pipe(gulp.dest('./www/js'));
+  gulp.src('./app/index.html')
+  .pipe(htmlmin({collapseWhitespace: true}))
+  //.pipe(rename({ extname: '.min.html' }))
   .pipe(gulp.dest('./www/'));
 });
 
